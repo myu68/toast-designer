@@ -1,0 +1,10 @@
+/build/
+/config/
+/public/
+/src/
+.babelrc
+.editorconfig
+.eslintignore
+/index.html
+/package-lock.json
+/package copy.json
