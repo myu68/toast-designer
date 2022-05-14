@@ -2,15 +2,18 @@
   <div class="demo-container">
     <div class="title-section">
       <span class="demo-title">Toast designer for Vue.js</span>
-      <div class="title-links">
-        <a href='https://github.com/yc111/toast/blob/master/README.md' target='_blank'>Readme</a>
-        <a href='https://github.com/yc111/toast/issues' target='_blank'>Issues</a>
-      </div>
+      <!-- <div class="title-links">
+        <a href='javascript:;' target='_blank'>Readme</a>
+        <a href='javascript:;' target='_blank'>Issues</a>
+      </div> -->
     </div>
     <div>
       <div class="props-item">
         <label class="toast-label">Toast Icon</label>
-        <input type="text" class="demo-input" v-model="type">
+        <select class="demo-select" v-model="type">
+          <option v-for="item in iconList" :key="item">{{ item.name }}</option>
+        </select>
+        <!-- <input type="text" class="demo-input" v-model="type"> -->
       </div>
       <div class="props-item">
         <label class="toast-label">Toast message</label>
@@ -46,41 +49,63 @@
 </template>
 
 <script>
-import Position from './position.vue'
-import CodeBlock from './codeBlock.vue'
+import Position from './position.vue';
+import CodeBlock from './codeBlock.vue';
 
 export default {
   name: 'demo',
   components: {
-    Position, CodeBlock
+    Position, CodeBlock,
   },
-  data () {
+  data() {
     return {
-      type: 'success',
+      iconList: [{
+        name: 'success',
+        value: 'success',
+      }, {
+        name: 'danger',
+        value: 'danger',
+      }, {
+        name: 'loading',
+        value: 'loading',
+      }, {
+        name: 'question',
+        value: 'question',
+      }, {
+        name: 'refresh',
+        value: 'refresh',
+      }, {
+        name: 'like',
+        value: 'like',
+      }, {
+        name: 'warning',
+        value: 'warning',
+      }],
+      // type: 'success',
       msg: 'Fight!',
       duration: 3,
       position: 'top-left',
       fullWidth: false,
       booleanList: [
         { label: 'off', value: false },
-        { label: 'on', value: true }
-      ]
-    }
+        { label: 'on', value: true },
+      ],
+    };
   },
   methods: {
-    handleClick (type, msg, duration, fullWidth) {
+    handleClick(type, msg, duration, fullWidth) {
       const options = {
         type,
         msg,
         duration,
         position: this.$refs.position.value,
-        fullWidth
-      }
-      this.$bus.$emit('change', options)
-      this.$toast(options)
-    }
-  }
-}
+        fullWidth,
+      };
+      this.$bus.$emit('change', options);
+      this.$toast(options);
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -144,6 +169,12 @@ export default {
     color: #333;
     transition: all .5s ease;
    }
+}
+
+.demo-select {
+  width: 216px;
+  height: 30px;
+  padding-left: 10px;
 }
 
 .demo-input {

@@ -64,3 +64,9 @@ this.$toast({
   fullWith: false
 });
 ```
+## Notice
+```
+peerDependencies 中的包在生成 umd 文件时不会被打包进去，以免和引入此插件的项目中 vue 版本冲突
+npm publish 发布 npm 包，需修改 package.json 中的 version，递增 1
+git commit
+```

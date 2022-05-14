@@ -33,7 +33,7 @@ const toast = function (options = {}) {
     document.body.appendChild(container)
   }
 
-  containerClass += position ? `${position}` : `${defaultPosition}`
+  containerClass += position ? ` ${position}` : ` ${defaultPosition}`
   containerClass += fullWidth ? ' full-width' : ''
   container.className = containerClass
 
